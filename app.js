@@ -5,6 +5,7 @@ const { unless } = require("express-unless");
 const routes = require("./routes");
 const { authenticateRoutes } = require("./config/unlessRoutes");
 const { authenticate } = require("./middlewares/auth.middleware");
+const globalError = require("./controllers/error/globalErrorHandler")
 const app = express();
 
 app.use(cors());
@@ -25,6 +26,7 @@ app.use(authenticate.unless(authenticateRoutes));
 app.use(routes);
 
 
+app.use(globalError)
 
 
 
